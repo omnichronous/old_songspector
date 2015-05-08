@@ -1,0 +1,11 @@
+<div class="panel panel-default">
+  <div class="panel-heading">Lyrics</div>
+  <div class="panel-body">
+    <% if (typeof(errors["lyricsStatus"]) !== 'undefined') { %>
+      <%= errors["lyricsStatus"] %>
+    <% } %>
+    <% if (typeof(lyrics) !== 'undefined') { %>
+      <%- lyrics %>
+    <% } %>
+  </div>
+</div>

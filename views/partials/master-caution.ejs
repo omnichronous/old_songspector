@@ -1,0 +1,8 @@
+<% if (typeof(errors["nowPlayingStatus"]) !== 'undefined') { %>
+<div class="col-lg-12">
+  <div class="alert alert-danger master-caution">
+    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+    <strong><%= errors["nowPlayingStatus"] %></strong>
+  </div>
+</div>
+<% } %>
