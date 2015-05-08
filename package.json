@@ -1,12 +1,16 @@
 {
-  "name": "lastfm-test",
+  "name": "songspector",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "description": "A dashboard that gets information about the currently playing song on Last.fm",
+  "main": "main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node main.js"
   },
-  "author": "",
+  "author": {
+    "name": "Mostly Good Designs",
+    "email": "omnichronous@gmail.com",
+    "url": "http://omnichronous.github.io/"
+  },
   "license": "ISC",
   "dependencies": {
     "async": "^0.9.0",
