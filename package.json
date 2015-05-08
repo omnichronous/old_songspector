@@ -1,7 +1,7 @@
 {
   "name": "songspector",
   "version": "1.0.0",
-  "description": "A dashboard that gets information about the currently playing song on Last.fm",
+  "description": "A dashboard that polls Last.fm for the users's currently playing track and displays lyrics, videos and more",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"

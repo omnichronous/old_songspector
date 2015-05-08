@@ -3,31 +3,46 @@
 <head>
   <% include ../partials/head %>
 </head>
-<body class="container-fluid">
+<body>
   <header>
-    <% include ../partials/header %>
+    <% include ../partials/nav %>
   </header>
+
   <main>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <div class="embed-responsive">
-            <iframe class="embed-responsive-item" src="https://www.youtube.com/watch?v=<%= videos.items[0].id.videoId %>&output=embed"></iframe>
+        <% if (typeof(error) !== 'undefined') { %>
+        <div class="col-lg-12">
+          <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <strong><%- error %></strong>
           </div>
         </div>
+        <% } %>
+        
+        <% if (typeof(error) === 'undefined') { %>
         <div class="col-sm-6 col-md-6 col-lg-6">
           <div class="panel panel-default">
+            <div class="panel-heading">Video</div>
             <div class="panel-body">
               <div class="row">
-                <div class="error"><%- errors %></div>
+                <div class="col-md-12 col-lg-12">
+                  <div class="well well-sm">
+                    <div class="embed-responsive embed-responsive-4by3">
+                      <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/<%= videos.items[0].id.videoId %>"></iframe>
+                    </div>
+                  </div>
+                </div>
                 <% videos.items.forEach(function(video, i) { %>
                 <% if (i>0) { %>
                 <div class="col-md-6 col-lg-6">
-                  <div class="well">
-                    <h5><%= video.snippet.title %></h5>
-                    <a href="https://www.youtube.com/watch?v=<%= video.id.videoId %>" title="<%= video.snippet.title %>">
-                      <img class="img-responsive" src="<%= video.snippet.thumbnails.medium.url %>" />
-                    </a>
+                  <div class="panel panel-default">
+                    <!--<div class="panel-heading"><h5><%= video.type %></h5></div>-->
+                    <div class="panel-body">
+                       <a href="https://www.youtube.com/watch?v=<%= video.id.videoId %>" title="<%= video.snippet.title %>">
+                        <img class="img-responsive" src="<%= video.snippet.thumbnails.medium.url %>" />
+                      </a>
+                    </div>
                   </div>
                 </div>
                 <% } %>
@@ -44,9 +59,11 @@
             </div>
           </div>
         </div>
+        <% } %>
       </div>
     </div>
   </main>
+
   <footer>
     <% include ../partials/footer %>
   </footer>
