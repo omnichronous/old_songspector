@@ -25,6 +25,8 @@ Youtube.authenticate({
   , key: "AIzaSyBP0ExnBq7md76rQSvZfsviYXz9C9bIELQ"
 });
 
+// set Last.fm authentication
+
 // Set now playing parameters
 var params = {
   user: 'Shaddy',
@@ -33,15 +35,18 @@ var params = {
 
 var errors = [];
 
+function error(msg) {
+  res.render('pages/dashboard', { error: msg });
+}
+
 app.get('/', function(req, res) {
 
   // Get now playing
   lfm.user.getRecentTracks(params, function(err, recentTracks) {
     //if (err) { throw err; }
-    if (err) {
-      console.log("No currently playing track detected");
-      errors.push("No currently playing track detected");
-    }
+    if (err) { console.log("No currently playing track detected"); }
+
+    if (recentTracks) {
 
     var title = recentTracks.track[0].name;
     var artist = recentTracks.track[0].artist["#text"];
@@ -55,30 +60,36 @@ app.get('/', function(req, res) {
     }, function (err, lyricResults) {
       if (err) { console.log("No lyrics found"); }
 
+      if (lyricResults) {
+
       // Get videos
       Youtube.search.list({
         "part": "id,snippet",
         "q": artist+"+"+title+"+official",
-        "maxResults": 11
+        "maxResults": 11,
+        "type": "video"
       },
       function (err, videoResults) {
-        for (var i = 0; i < videoResults.items.length; i++) { 
-          //console.log("Video info:");
-          //console.log(data.items[i].snippet.title);
-          //console.log(data.items[i].snippet.thumbnails.default.url);
-          //console.log("Video ID:");
-          //console.log(data.items[i].id.videoId);
-          //console.log("Video link:");
-          //console.log("https://www.youtube.com/watch?v="+data.items[i].id.videoId);
-          //return "https://www.youtube.com/watch?v="+data.items[i].id.videoId;
+        if (err) { console.log("No videos found"); }
+
+        if (videoResults) {
+          res.render('pages/dashboard', { lyrics: lyricResults, videos: videoResults });
         }
-        var data = [recentTracks, lyricResults, videoResults, errors];
-        res.render('pages/dashboard', { lyrics: lyricResults, videos: videoResults, errors: errors });
+
+        else { res.render('pages/dashboard', { error: "No videos found" }); }
       });
+
+      }
+
+      else { res.render('pages/dashboard', { error: "No lyrics found" }); }
 
       //return data;
       //verify(data);
     });
+
+    }
+
+    else { res.render('pages/dashboard', { error: "No currently playing track detected" }); }
 
     /*getLyrics({
       title: title,
