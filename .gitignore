@@ -1,0 +1,6 @@
+node_modules/
+auth.js
+server.js
+test.html
+views/pages/index.ejs
+views/pages/lyrics.ejs

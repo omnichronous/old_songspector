@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <% include ../partials/head %>
+</head>
+<body class="container-fluid">
+  <header>
+    <% include ../partials/header %>
+  </header>
+  <main>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <div class="embed-responsive">
+            <iframe class="embed-responsive-item" src="https://www.youtube.com/watch?v=<%= videos.items[0].id.videoId %>&output=embed"></iframe>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-6 col-lg-6">
+          <div class="panel panel-default">
+            <div class="panel-body">
+              <div class="row">
+                <% videos.items.forEach(function(video, i) { %>
+                <% if (i>0) { %>
+                <div class="col-md-6 col-lg-6">
+                  <div class="well">
+                    <h5><%= video.snippet.title %></h5>
+                    <a href="https://www.youtube.com/watch?v=<%= video.id.videoId %>" title="<%= video.snippet.title %>">
+                      <img class="img-responsive" src="<%= video.snippet.thumbnails.medium.url %>" />
+                    </a>
+                  </div>
+                </div>
+                <% } %>
+                <% }); %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">Lyrics</div>
+            <div class="panel-body">
+               <%- lyrics %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <% include ../partials/footer %>
+  </footer>
+</body>
+</html>
