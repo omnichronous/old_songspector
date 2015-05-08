@@ -1,6 +1,6 @@
-# Project Name
+# Songspector
 
-Songspector is a music dashboard that polls Last.fm for the user's currently playing track and displays a YouTube video and lyrics of the song, as well as related videos. The app is written in JavaScript for Node.js.
+A music dashboard that polls Last.fm for the user's currently playing track and displays a YouTube video and lyrics of the song, as well as related videos. The app is written in JavaScript for Node.js.
 
 [See it in action here.](http://songspector-omnichronous.rhcloud.com/)
 
