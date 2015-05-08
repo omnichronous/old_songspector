@@ -2,9 +2,9 @@
   "name": "songspector",
   "version": "1.0.0",
   "description": "A dashboard that gets information about the currently playing song on Last.fm",
-  "main": "main.js",
+  "main": "server.js",
   "scripts": {
-    "start": "node main.js"
+    "start": "node server.js"
   },
   "author": {
     "name": "Mostly Good Designs",
